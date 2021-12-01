@@ -10,15 +10,6 @@ const localConfig = {
   database: process.env.DB_DATABASE,
 };
 
-const databaseConfig = {
-  connectionString: process.env.DATABASE_URL,
-  ssl: {
-    rejectUnauthorized: false,
-  },
-};
-
-const connecion = new Pool(
-  process.env.NODE_ENV !== 'production' ? localConfig : databaseConfig,
-);
+const connecion = new Pool(localConfig);
 
 export default connecion;

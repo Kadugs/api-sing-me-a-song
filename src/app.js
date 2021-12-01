@@ -12,7 +12,7 @@ app.post('/recommendations', recommendationsController.addNewMusic);
 app.post('/recommendations/:id/upvote', voteController.upvote);
 app.post('/recommendations/:id/downvote', voteController.downvote);
 
-app.get('/recommendations/random', recommendationsController.getRandomMusic);
+app.get('/recommendations/random', recommendationsController.getRecommendation);
 app.get('/recommendations/top/:amount', recommendationsController.listTopMusics);
 
 export default app;
