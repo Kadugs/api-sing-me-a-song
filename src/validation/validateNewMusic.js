@@ -6,7 +6,8 @@ export default function validateNewMusic(object) {
 
   const musicSchema = joi.object({
     name: joi.string().min(3).max(100).required(),
-    youtubeLink: joi.string().pattern(new RegExp(youtubeLink)).required(),
+    youtubeLink: joi.string().pattern(new RegExp(youtubeLink)),
   });
-  return !joi.isError(musicSchema.validate(object));
+  const { error } = musicSchema.validate(object);
+  return !joi.isError(error);
 }

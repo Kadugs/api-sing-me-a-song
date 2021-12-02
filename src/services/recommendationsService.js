@@ -7,7 +7,9 @@ async function authenticateNewMusic({ name, youtubeLink }) {
   }
   const allMusics = await recommendationsRepository.getAllMusicLinks();
   const haveAlreadyInTheDatabase = allMusics.some((music) => music.link === youtubeLink);
-  if (haveAlreadyInTheDatabase) return false;
+  if (haveAlreadyInTheDatabase) {
+    return false;
+  }
 
   const newRecommendation = await recommendationsRepository.insertNewRecommendation({
     name,

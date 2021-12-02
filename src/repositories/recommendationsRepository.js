@@ -17,5 +17,15 @@ async function insertNewRecommendation({ name, youtubeLink }) {
   );
   return result.rows[0];
 }
+async function removeRecommendation(id) {
+  const result = await connection.query(
+    `
+    DELETE
+    FROM recommendations
+    WHERE id = $1`,
+    [id],
+  );
+  return result.rows[0];
+}
 
-export { getAllMusicLinks, insertNewRecommendation };
+export { getAllMusicLinks, insertNewRecommendation, removeRecommendation };

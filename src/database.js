@@ -10,6 +10,6 @@ const localConfig = {
   database: process.env.DB_DATABASE,
 };
 
-const connecion = new Pool(localConfig);
+const connection = new Pool(localConfig);
 
-export default connecion;
+export default connection;
