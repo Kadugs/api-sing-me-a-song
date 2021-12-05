@@ -21,11 +21,21 @@ async function addNewMusic(req, res) {
 }
 
 async function getRecommendation(req, res) {
-  return res.send('hello');
+  const recomendation = await recommendationsService.drawRecommendation();
+  if (recomendation === null) {
+    return res.sendStatus(404);
+  }
+  return res.status(200).send(recomendation);
 }
 
 async function listTopMusics(req, res) {
-  return res.send('ola');
+  const { amount } = req.params;
+
+  const recommendationAmout = await recommendationsService.getRecommendationAmount(
+    amount,
+  );
+  if (recommendationAmout === null) return res.sendStatus(404);
+  return recommendationAmout;
 }
 
 export { addNewMusic, getRecommendation, listTopMusics };

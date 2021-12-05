@@ -5,6 +5,11 @@ async function getAllMusicLinks() {
   return result.rows;
 }
 
+async function getAllRecommendations() {
+  const result = await connection.query('SELECT * FROM recommendations;');
+  return result.rows;
+}
+
 async function insertNewRecommendation({ name, youtubeLink }) {
   const result = await connection.query(
     `
@@ -27,5 +32,22 @@ async function removeRecommendation(id) {
   );
   return result.rows[0];
 }
+async function getTopRecommendationsOrdered(quantity) {
+  const result = await connection.query(
+    `
+  SELECT *
+  FROM recommendations
+  ORDER BY score DESC
+  LIMIT $1;`,
+    [quantity],
+  );
+  return result.rows;
+}
 
-export { getAllMusicLinks, insertNewRecommendation, removeRecommendation };
+export {
+  getAllMusicLinks,
+  insertNewRecommendation,
+  removeRecommendation,
+  getAllRecommendations,
+  getTopRecommendationsOrdered,
+};
