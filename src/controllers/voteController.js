@@ -3,6 +3,7 @@ import * as voteService from '../services/voteService.js';
 async function voteFactory({ id, type }) {
   try {
     const newScore = await voteService.updateScore({ id, type });
+    if (newScore?.deleted) return 202;
     if (newScore) return 201;
     return 400;
   } catch (err) {
